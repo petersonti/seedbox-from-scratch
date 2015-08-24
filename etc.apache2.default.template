@@ -7,7 +7,7 @@
 #
 ######################################################################
 #
-#  Copyright (c) 2013 Notos (https://github.com/Notos/)
+#  Copyright (c) 2015 dannyti (https://github.com/dannyti/)
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -23,15 +23,25 @@
 <VirtualHost *:80>
   ServerAdmin webmaster@localhost
   ServerName <servername>
+  DocumentRoot /var/www/
   RewriteEngine On
   RewriteCond %{HTTPS} off
   RewriteCond %{REQUEST_URI} !^\/share\/
   RewriteRule (.*) https://%{HTTP_HOST}:443%{REQUEST_URI} 
-  DocumentRoot /var/www/
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/private(.*) /home/%{LA-U:remote_user}/private$1
 
   <Directory />
     Options FollowSymLinks
     AllowOverride All
+  </Directory>
+
+  <Directory /var/www/>
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AllowOverride None
+    Order allow,deny
+    allow from all
     AuthType Digest
     AuthName "documentroot"
     AuthDigestProvider file
@@ -39,12 +49,16 @@
     Require user <username>
   </Directory>
 
-  <Directory /var/www/>
+  <Location /private>
     Options Indexes FollowSymLinks MultiViews
-    AllowOverride None
-    Order allow,deny
-    allow from all
-  </Directory>
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "private"
+    AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </Location>
 
   <Directory /var/www/share/>
     Order Deny,Allow
@@ -64,6 +78,7 @@
     Satisfy any
   </Directory>
   
+<<<<<<< HEAD
   <Directory /var/www/seedboxInfo.php>
     Options FollowSymLinks
     AuthType Digest
@@ -74,6 +89,8 @@
     Require user valid-user
     SetEnv R_ENV "/var/www/seedboxInfo.php"
   </Directory>
+=======
+>>>>>>> v14.06
 
   ErrorLog /var/log/apache2/error.log
 
@@ -98,16 +115,25 @@
 <VirtualHost *:443>
   ServerAdmin webmaster@localhost
   ServerName <servername>
-  NameVirtualHost *:443
   SSLEngine on
   SSLCertificateFile /etc/seedbox-from-scratch/ssl/cert.pem
   SSLCertificateKeyFile /etc/seedbox-from-scratch/ssl/key.pem
-
   DocumentRoot /var/www/
-
+  RewriteEngine On
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/private(.*) /home/%{LA-U:remote_user}/private$1
+  
   <Directory />
     Options FollowSymLinks
     AllowOverride All
+  </Directory>
+
+  <Directory /var/www/>
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AllowOverride None
+    Order allow,deny
+    allow from all
     AuthType Digest
     AuthName "documentroot"
     AuthDigestProvider file
@@ -115,12 +141,16 @@
     Require user <username>
   </Directory>
 
-  <Directory /var/www/>
+  <Location /private>
     Options Indexes FollowSymLinks MultiViews
-    AllowOverride None
-    Order allow,deny
-    allow from all
-  </Directory>
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "private"
+    AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </Location>
 
   <Directory /var/www/share/>
     Order Deny,Allow
@@ -155,7 +185,7 @@
   # Possible values include: debug, info, notice, warn, error, crit,
   # alert, emerg.
   LogLevel warn
-
+  
   CustomLog /var/log/apache2/access.log combined
   <Directory /var/www/rutorrent>
     AuthType Digest
