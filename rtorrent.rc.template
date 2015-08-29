@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-#########################################
-=======
-#
+######################################################################
 #
 # The Seedbox From Scratch Script
 #   By Notos ---> https://github.com/Notos/
@@ -20,7 +17,6 @@
 #  --> Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 #
 ######################################################################
->>>>>>> v14.06
 max_downloads_global = 0
 max_uploads_global = 0
 min_peers = 30 
@@ -42,31 +38,6 @@ port_random = yes
 # Directories
 schedule = watch_directory,5,5,load_start=/home/<username>/downloads/watch/*.torrent
 schedule = untied_directory,5,5,stop_untied= 
-<<<<<<< HEAD
-schedule = low_diskspace,5,10,close_low_diskspace=5000M 
-
-
-
-# Networking
-
-# network.scgi.open_port = localhost:5000
-network.scgi.open_port = 127.0.0.1:5995
-# scgi_port = 127.0.0.1:5000
-network.http.ssl_verify_peer.set=0
-
-use_udp_trackers = yes 
-encryption = allow_incoming,enable_retry,prefer_plaintext
-network.max_open_files.set = 4096 
-network.max_open_sockets.set = 1536 
-network.http.max_open.set = 48 
-network.send_buffer.size.set = 4M 
-network.receive_buffer.size.set = 4M
-dht = disable
-peer_exchange = no
-
-
-# Memory Settings
-=======
 schedule = low_diskspace,5,10,close_low_diskspace=2000M 
 
 # Networking
@@ -85,7 +56,6 @@ network.receive_buffer.size.set = 4M
 dht = disable
 peer_exchange = no
 
->>>>>>> v14.06
 check_hash = no
 pieces.preload.type.set = 1
 max_memory_usage = 3500M
