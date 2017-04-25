@@ -45,5 +45,6 @@ sudo chmod +x /etc/seedbox-from-scratch/installruTorrentStreamPlugin
 sudo chmod +x /etc/seedbox-from-scratch/installCurl
 sudo chmod +x /etc/seedbox-from-scratch/installSICKRAGETV
 sudo chmod +x /etc/seedbox-from-scratch/installDiskspacePlugin
+sudo chmod +x /etc/seedbox-from-scratch/iptodomain
 
 ##################### LAST LINE ###########
