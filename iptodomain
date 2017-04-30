@@ -7,6 +7,8 @@ read -p "What is your domain name ? (without the http://): " DOMAIN
 
 sudo sed -i -e 's/'$IPADDRESS1'\b/'$DOMAIN'/g' /etc/apache2/sites-available/000-default.conf
 
+sudo sed -i -e 's/'$IPADDRESS1'\b/'$DOMAIN'/g' /etc/apache2/apache2.conf
+
 sudo sed -i 's_/etc/seedbox-from-scratch/ssl/cert.pem_/etc/letsencrypt/live/'$DOMAIN'/fullchain.pem_g' /etc/apache2/sites-available/000-default.conf
 
 sudo sed -i 's_/etc/seedbox-from-scratch/ssl/key.pem_/etc/letsencrypt/live/'$DOMAIN'/privkey.pem_g' /etc/apache2/sites-available/000-default.conf
