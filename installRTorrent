@@ -34,6 +34,10 @@
 
 RTORRENT1=$1
 
+if [ "$RTORRENT1" = "0.9.7" ]; then
+  LIBTORRENT1=0.13.7
+fi
+
 if [ "$RTORRENT1" = "0.9.6" ]; then
   LIBTORRENT1=0.13.6
 fi
