@@ -66,6 +66,7 @@ make install
 
 
 git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/rtorrent/
+cd /etc/seedbox-from-scratch/rtorrent
 git checkout v0.9.7
 ./autogen.sh
 ./configure --with-xmlrpc-c --with-ncurses --disable-debug
