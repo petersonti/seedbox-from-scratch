@@ -54,14 +54,37 @@ if [ "$RTORRENT1" = "0.9.4" ]; then
   LIBTORRENT1=0.13.4
 fi
 
+if [ "$RTORRENT1" = "0.9.7" ]; then
+git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/libtorrent/
+cd /etc/seedbox-from-scratch/libtorrent
+git checkout v0.13.7
+git cherry-pick 7b29b6b
+./autogen.sh
+./configure --disable-debug
+make
+make install
+
+
+git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/rtorrent/
+git checkout v0.9.7
+./autogen.sh
+./configure --with-xmlrpc-c --with-ncurses --disable-debug
+make
+make install
+ldconfig
+fi
+
+if [ "$RTORRENT1" = "0.9.2" ] || [ "$RTORRENT1" = "0.9.3" ] || [ "$RTORRENT1" = "0.9.4" ] || [ "$RTORRENT1" = "0.9.6" ]; then
 if [ ! -d /etc/seedbox-from-scratch/source/rtorrent-$RTORRENT1/ ]; then
   sudo tar xvfz /etc/seedbox-from-scratch/rtorrent-$RTORRENT1.tar.gz -C /etc/seedbox-from-scratch/source/
   sudo tar xvfz /etc/seedbox-from-scratch/libtorrent-$LIBTORRENT1.tar.gz -C /etc/seedbox-from-scratch/source/
+fi
 fi
 
 sudo killall rtorrent
 sudo kill -9 `sudo ps aux | grep rtorrent | grep -v grep | awk '{print $2}' | cut -d. -f 1` &> /dev/null
 
+if [ "$RTORRENT1" = "0.9.2" ] || [ "$RTORRENT1" = "0.9.3" ] || [ "$RTORRENT1" = "0.9.4" ] || [ "$RTORRENT1" = "0.9.6" ]; then
 cd /etc/seedbox-from-scratch/source/libtorrent-$LIBTORRENT1
 sudo ./autogen.sh
 sudo ./configure --prefix=/usr
@@ -74,6 +97,5 @@ sudo ./configure --prefix=/usr --with-xmlrpc-c
 sudo make -j2
 sudo make install
 sudo ldconfig
-
-
+fi
 
