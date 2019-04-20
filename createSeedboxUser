@@ -369,7 +369,11 @@ sudo perl -pi -e "s/^$SABNZBDHTTPPORT1.*\n$//g" /etc/seedbox-from-scratch/ports.
 sudo bash /etc/seedbox-from-scratch/changeUserPassword $NEWUSER1 $PASSWORD1 rutorrent
 sudo bash /etc/seedbox-from-scratch/changeUserPassword $NEWUSER1 $PASSWORD1 private
 # 19.
+if [ "$RTORRENT1" = "0.9.7" ]; then
+sudo cp /etc/seedbox-from-scratch/rtorrent.rc.template1  $HOMEJAILED1/.rtorrent.rc > /dev/null
+else
 sudo cp /etc/seedbox-from-scratch/rtorrent.rc.template  $HOMEJAILED1/.rtorrent.rc > /dev/null
+fi
 
 sudo perl -pi -e "s/<username>/$NEWUSER1$ADDHOME1/g" $HOMEJAILED1/.rtorrent.rc
 sudo perl -pi -e "s/5995/$SCGIPORT1/g" $HOMEJAILED1/.rtorrent.rc
@@ -390,7 +394,7 @@ sudo chmod 770 $HOMEJAILED1/log
 # 21.
 
 if [ "$CHROOTJAIL1" == "YES" ]; then
-  sudo cp /etc/seedbox-from-scratch/rtorrent.jailed.conf.template /etc/init/rtorrent.$NEWUSER1.conf
+  sudo cp /etc/seedbox-from-scratch/rtorrent.jailed.conf.template1 /etc/init/rtorrent.$NEWUSER1.conf
 else
   sudo cp /etc/seedbox-from-scratch/rtorrent.conf.template /etc/init/rtorrent.$NEWUSER1.conf
   sudo perl -pi -e "s/<username>/$NEWUSER1/g" /etc/init/rtorrent.$NEWUSER1.conf
