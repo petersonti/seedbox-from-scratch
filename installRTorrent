@@ -55,24 +55,23 @@ if [ "$RTORRENT1" = "0.9.4" ]; then
 fi
 
 if [ "$RTORRENT1" = "0.9.7" ]; then
-git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/libtorrent/
-cd /etc/seedbox-from-scratch/libtorrent
+git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/libtorrent/source/
+cd /etc/seedbox-from-scratch/libtorrent/source
 git checkout v0.13.7
 git cherry-pick 7b29b6b
-./autogen.sh
-./configure --disable-debug
-make
-make install
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr
+sudo make -j2
+sudo make install
 
-
-git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/rtorrent/
-cd /etc/seedbox-from-scratch/rtorrent
+git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/rtorrent/source/
+cd /etc/seedbox-from-scratch/rtorrent/source
 git checkout v0.9.7
-./autogen.sh
-./configure --with-xmlrpc-c --with-ncurses --disable-debug
-make
-make install
-ldconfig
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr --with-xmlrpc-c
+sudo make -j2
+sudo make install
+sudo ldconfig
 fi
 
 if [ "$RTORRENT1" = "0.9.2" ] || [ "$RTORRENT1" = "0.9.3" ] || [ "$RTORRENT1" = "0.9.4" ] || [ "$RTORRENT1" = "0.9.6" ]; then
