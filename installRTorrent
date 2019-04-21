@@ -56,7 +56,7 @@ fi
 
 if [ "$RTORRENT1" = "0.9.7" ]; then
 git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/source/libtorrent/
-cd /etc/seedbox-from-scratch//sourcelibtorrent/source
+cd /etc/seedbox-from-scratch/source/libtorrent
 git checkout v0.13.7
 git cherry-pick 7b29b6b
 sudo ./autogen.sh
