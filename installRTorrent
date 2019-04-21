@@ -55,8 +55,8 @@ if [ "$RTORRENT1" = "0.9.4" ]; then
 fi
 
 if [ "$RTORRENT1" = "0.9.7" ]; then
-git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/libtorrent/source/
-cd /etc/seedbox-from-scratch/libtorrent/source
+git clone https://github.com/petersonti/libtorrent.git /etc/seedbox-from-scratch/source/libtorrent/
+cd /etc/seedbox-from-scratch//sourcelibtorrent/source
 git checkout v0.13.7
 git cherry-pick 7b29b6b
 sudo ./autogen.sh
@@ -64,8 +64,8 @@ sudo ./configure --prefix=/usr
 sudo make -j2
 sudo make install
 
-git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/rtorrent/source/
-cd /etc/seedbox-from-scratch/rtorrent/source
+git clone https://github.com/petersonti/rtorrent.git /etc/seedbox-from-scratch/source/rtorrent/
+cd /etc/seedbox-from-scratch/source/rtorrent
 git checkout v0.9.7
 sudo ./autogen.sh
 sudo ./configure --prefix=/usr --with-xmlrpc-c
