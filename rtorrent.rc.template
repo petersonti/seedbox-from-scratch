@@ -17,7 +17,6 @@
 #  --> Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 #
 ######################################################################
-
 # Maximum and minimum number of peers to connect to per torrent.
 throttle.min_peers.normal.set = 1
 throttle.max_peers.normal.set = 150
@@ -89,7 +88,7 @@ dht.mode.set = disable
 protocol.pex.set = no
 
 # Set downlad list layout style. ("full", "compact")
-ui.torrent_list.layout.set = "full"
+#ui.torrent_list.layout.set = "full"
 
 # SCGI Connectivity (for alternative rtorrent interfaces, XMLRPC)
 #
