@@ -50,8 +50,8 @@ if [ "$RTORRENT1" = "0.9.4" ]; then
   LIBTORRENT1=0.13.4
 fi
 
-if [ "$RTORRENT1" = "0.9.6" ]; then
-  LIBTORRENT1=0.13.6
+if [ "$RTORRENT1" = "0.9.7" ]; then
+  LIBTORRENT1=0.13.7
 fi
 
 if [ "$RTORRENT1" = "0.9.8" ]; then
