@@ -24,7 +24,13 @@
 #
 #
 # OpenVPN in beta --- Tested on Ubuntu 12.04 64Bit
-  sudo bash /etc/seedbox-from-scratch/ovpni
+  #sudo bash /etc/seedbox-from-scratch/ovpni
+  OSV1=$(lsb_release -rs)
+  if [ "$OSV1" = "16.04" ]; then
+  sudo bash /etc/seedbox-from-scratch/vpn1604.sh
+else
+  sudo bash /etc/seedbox-from-scratch/vpn.sh
+fi
 #
 #
 #
