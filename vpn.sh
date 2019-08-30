@@ -4,6 +4,8 @@
 #
 # Copyright (c) 2013 Nyr. Released under the MIT License.
 OPENVPNPORT1=`cat /etc/seedbox-from-scratch/openvpn.info`
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
+IP1=$(wget -qO- ipv4.icanhazip.com)
 
 if grep -qs "Ubuntu 16.04" "/etc/os-release"; then
 	echo 'Ubuntu 16.04 is no longer supported in the current version of openvpn-install
