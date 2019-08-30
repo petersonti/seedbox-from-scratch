@@ -375,7 +375,7 @@ verb 3" > /etc/openvpn/client-common.txt
 	echo "Finished!"
 	echo
 	echo "$CLIENT.ovpn is zipped into $CLIENT.zip"
-    echo "Client $CLIENT added, cert available at https://$IP1/rutorrent/$CLIENT.zip to use in any OpenVPN client"
+    echo "Client $CLIENT added, cert available at https://$IP/rutorrent/$CLIENT.zip to use in any OpenVPN client"
 	echo
 	echo "If you want to add more clients, you simply need to run this script again!"
 	sudo chown --reference=restartSeedbox *.ovpn
